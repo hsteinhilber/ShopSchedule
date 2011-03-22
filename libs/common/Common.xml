@@ -1,0 +1,687 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Common</name>
+    </assembly>
+    <members>
+        <member name="T:System.Linq.EnumerableEx">
+            <summary>
+            Additional extension methods for <see cref="T:System.Collections.Generic.IEnumerable`1"/>
+            sequences.
+            </summary>
+        </member>
+        <member name="M:System.Linq.EnumerableEx.Join``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Generates a string by joining all the elements from the source sequence seperated by a delimiter.
+            </summary>
+            <typeparam name="T">The type of the elements within <paramref name="source"/></typeparam>
+            <param name="source">The sequence of elements to join</param>
+            <exception cref="T:System.ArgumentNullException">Thrown if <paramref name="source"/> is
+            <c>null</c></exception>
+            <returns>A string representation of the elements in <paramref name="source"/> 
+            delimited by the default list seperator.</returns>
+            <remarks>
+            <para>
+            This overload uses the default list seperator for the thread's current culture
+            as specified by <see cref="P:System.Globalization.CultureInfo.TextInfo"/>.
+            </para>
+            <para>
+            This method uses immediate execution. It should not be used on infinite
+            sequences as there is no way to break out.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:System.Linq.EnumerableEx.Join``1(System.Collections.Generic.IEnumerable{``0},System.String)">
+            <summary>
+            Generates a string by joining all the elements from the source sequence seperated by 
+            the specified delimiter.
+            </summary>
+            <typeparam name="T">The type of the elements within <paramref name="source"/></typeparam>
+            <param name="source">The sequence of elements to join</param>
+            <param name="delimiter">The delimiter to use to seperate the elements within the string</param>
+            <exception cref="T:System.ArgumentNullException">Thrown if <paramref name="source"/> is
+            <c>null</c></exception>
+            <returns>A string representation of the elements in <paramref name="source"/> 
+            delimited by <paramref name="delimiter"/></returns>
+            <remarks>
+            <para>
+            This overload uses the default list seperator for the thread's current culture
+            as specified by <see cref="P:System.Globalization.CultureInfo.TextInfo"/> if <paramref name="delimiter"/>
+            is <c>null</c>. Otherwise, it will use the delimiter specified.
+            </para>
+            <para>
+            This method uses immediate execution. It should not be used on infinite
+            sequences as there is no way to break out.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:System.Linq.EnumerableEx.Prepend``1(System.Collections.Generic.IEnumerable{``0},``0)">
+            <summary>
+            Generates a sequence that contains a specified element followed by the elements 
+            of a source sequence.
+            </summary>
+            <typeparam name="T">The type of the elements in <paramref name="source"/></typeparam>
+            <param name="source">The original sequence</param>
+            <param name="element">The element to yield before the elements of <paramref name="source"/>
+            have been yielded.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown if <paramref name="source"/> is null</exception>
+            <returns>An <see cref="T:System.Collections.Generic.IEnumerable`1"/> containing all the elements of <paramref name="source"/>
+            followed by <paramref name="element"/>.</returns>
+            <remarks>This method uses deferred execution and streams its elements from the 
+            source sequence.</remarks>
+        </member>
+        <member name="M:System.Linq.EnumerableEx.Batch``1(System.Collections.Generic.IEnumerable{``0},System.Int32)">
+            <summary>
+            Generates a sequence of sized sub-sequences.
+            </summary>
+            <typeparam name="T">The type of the elements in <paramref name="source"/></typeparam>
+            <param name="source">The original sequence to batch</param>
+            <param name="size">The size of each of the sub-sequences</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">Thrown if <paramref name="size"/> is 
+            less than or equal to 0</exception>
+            <returns>A sequence of equally sized sub-sequences from the original source sequence.</returns>
+            <remarks>This method uses deferred execution. It streams its results in <paramref name="size"/>
+            chunks of elements.</remarks>
+        </member>
+        <member name="M:System.Linq.EnumerableEx.Batch``2(System.Collections.Generic.IEnumerable{``0},System.Int32,System.Func{System.Collections.Generic.IEnumerable{``0},``1})">
+            <summary>
+            Generates a sequence of projected objects from sized sub-sequences.
+            </summary>
+            <typeparam name="TSource">The type of the elements in <paramref name="source"/></typeparam>
+            <typeparam name="TResult">The type of the result sequence the sub-sequences are projected to</typeparam>
+            <param name="source">The original sequence to batch</param>
+            <param name="size">The size of the sequences to be passed to <paramref name="resultSelector"/></param>
+            <param name="resultSelector">A mapping function to project the sub-sequence into
+            a <typeparamref name="TResult"/></param>
+            <exception cref="T:System.ArgumentNullException">Thrown if <paramref name="source"/> or 
+            <paramref name="resultSelector"/> are <c>null</c></exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">Thrown if <paramref name="size"/> is 
+            less than or equal to 0</exception>
+            <returns>A sequence of projections on equally sized sub-sequences.</returns>
+            <remarks>This method uses deferred execution. It streams its results in <paramref name="size"/>
+            chunks of elements.</remarks>
+        </member>
+        <member name="M:System.Linq.EnumerableEx.Append``1(System.Collections.Generic.IEnumerable{``0},``0)">
+            <summary>
+            Generates a sequence that contains the elements of a source sequence followed
+            by an additional element.
+            </summary>
+            <typeparam name="T">The type of the elements in <paramref name="source"/></typeparam>
+            <param name="source">The original sequence</param>
+            <param name="element">The element to yield after all elements of <paramref name="source"/>
+            have been yielded.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown if <paramref name="source"/> is null</exception>
+            <returns>An <see cref="T:System.Collections.Generic.IEnumerable`1"/> containing all the elements of <paramref name="source"/>
+            followed by <paramref name="element"/>.</returns>
+            <remarks>This method uses deferred execution and streams its elements from the 
+            source sequence.</remarks>
+        </member>
+        <member name="M:System.Linq.EnumerableEx.Pipe``1(System.Collections.Generic.IEnumerable{``0},System.Action{``0})">
+            <summary>
+            Calls an action on elements of a sequence and then yields them for further processing.
+            </summary>
+            <typeparam name="T">The type of the elements in <paramref name="source"/></typeparam>
+            <param name="source">The sequence of elements to call <paramref name="action"/> on</param>
+            <param name="action">The method to call on each element in the sequence</param>
+            <exception cref="T:System.ArgumentNullException">Thrown if <paramref name="source"/> or
+            <paramref name="action"/> are <c>null</c></exception>
+            <returns>A sequence of elements equivalent to <paramref name="source"/>.</returns>
+            <remarks>This method uses deferred execution, and it streams its elements from
+            the source sequence.</remarks>
+        </member>
+        <member name="M:System.Linq.EnumerableEx.Pipe``1(System.Collections.Generic.IEnumerable{``0},System.Action{System.Int32,``0})">
+            <summary>
+            Calls an action on elements of a sequence including the elements index,
+            and then yields them for further processing.
+            </summary>
+            <typeparam name="T">The type of the elements in <paramref name="source"/></typeparam>
+            <param name="source">The sequence of elements to call <paramref name="action"/> on</param>
+            <param name="action">The method to call on each element in the sequence</param>
+            <exception cref="T:System.ArgumentNullException">Thrown if <paramref name="source"/> or
+            <paramref name="action"/> are <c>null</c></exception>
+            <returns>A sequence of elements equivalent to <paramref name="source"/>.</returns>
+            <remarks>This method uses deferred execution, and it streams its elements from
+            the source sequence.</remarks>
+        </member>
+        <member name="M:System.Linq.EnumerableEx.Each``1(System.Collections.Generic.IEnumerable{``0},System.Action{``0})">
+            <summary>
+            Iterates through <paramref name="source"/> and calls <paramref name="action"/> 
+            on each element.
+            </summary>
+            <typeparam name="T">The type of the elements in <paramref name="source"/></typeparam>
+            <param name="source">The sequence of elements to pass to <paramref name="action"/></param>
+            <param name="action">The method to execute on each element of the sequence</param>
+            <exception cref="T:System.ArgumentNullException">Thrown if <paramref name="source"/> or
+            <paramref name="action"/> are <c>null</c></exception>
+            <remarks>This method uses immediate execution. It should not be used on
+            infinite sequences as there is no easy way to break out.</remarks>
+        </member>
+        <member name="M:System.Linq.EnumerableEx.Each``1(System.Collections.Generic.IEnumerable{``0},System.Action{System.Int32,``0})">
+            <summary>
+            Iterates through <paramref name="source"/> and calls <paramref name="action"/> 
+            on each element specifying its zero-based index within the sequence.
+            </summary>
+            <typeparam name="T">The type of the elements in <paramref name="source"/></typeparam>
+            <param name="source">The sequence of elements to pass to <paramref name="action"/></param>
+            <param name="action">The method to execute on each index/element pair from the sequence</param>
+            <exception cref="T:System.ArgumentNullException">Thrown if <paramref name="source"/> or
+            <paramref name="action"/> are <c>null</c></exception>
+            <remarks>This method uses immediate execution. It should not be used on
+            infinite sequences as there is no easy way to break out.</remarks>
+        </member>
+        <member name="M:System.Linq.EnumerableEx.AsNullable``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Converts a sequence of value types to a sequence of nullable value types.
+            </summary>
+            <typeparam name="T">The type of the elements in <paramref name="source"/></typeparam>
+            <param name="source">The elements to convert to <see cref="T:System.Nullable`1"/></param>
+            <exception cref="T:System.ArgumentNullException">Thrown if <paramref name="source"/> is
+            <c>null</c></exception>
+            <returns>An <see cref="T:System.Collections.Generic.IEnumerable`1"/> containing all of the elements from
+            the source sequence.</returns>
+            <remarks>This method uses deferred execution and streams the elements
+            fromt the source sequence.</remarks>
+        </member>
+        <member name="M:System.Linq.EnumerableEx.Trace``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Outputs elements of the source sequence to <see cref="T:System.Diagnostics.Trace"/> as
+            they are yielded.
+            </summary>
+            <typeparam name="T">The type of the elements in <paramref name="source"/></typeparam>
+            <param name="source">The original sequence</param>
+            <exception cref="T:System.ArgumentNullException">Throw if <paramref name="source"/> is
+            <c>null</c></exception>
+            <returns>A sequence of elements equivalent to <paramref name="source"/></returns>
+            <remarks>This method uses deferred execution and streams its elements from
+            the source sequence. Elements are only written to <see cref="T:System.Diagnostics.Trace"/>
+            if they are yielded.</remarks>
+        </member>
+        <member name="M:System.Linq.EnumerableEx.Trace``1(System.Collections.Generic.IEnumerable{``0},System.String)">
+            <summary>
+            Outputs elements of the source sequence to <see cref="T:System.Diagnostics.Trace"/> as
+            they are yielded. Elements are formatted using the specified format string.
+            </summary>
+            <typeparam name="T">The type of the elements in <paramref name="source"/></typeparam>
+            <param name="source">The original sequence</param>
+            <param name="format">The format to use when converting elements to strings</param>
+            <exception cref="T:System.ArgumentNullException">Throw if <paramref name="source"/> is
+            <c>null</c></exception>
+            <returns>A sequence of elements equivalent to <paramref name="source"/></returns>
+            <remarks>
+            <para>
+            If <paramref name="format"/> is <c>null</c> or empty, then <see cref="M:System.Object.ToString"/> will
+            be called on each element that is not <c>null</c>. <c>null</c> values will be replaced
+            with empty strings.
+            </para>
+            <para>
+            This method uses deferred execution and streams its elements from
+            the source sequence. Elements are only written to <see cref="T:System.Diagnostics.Trace"/>
+            if they are yielded.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:System.Linq.EnumerableEx.Trace``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.String})">
+            <summary>
+            Outputs elements of the source sequence to <see cref="T:System.Diagnostics.Trace"/> as
+            they are yielded. Elements are converted to strings using the <paramref name="formatter"/>
+            projection.
+            </summary>
+            <typeparam name="T">The type of the elements in <paramref name="source"/></typeparam>
+            <param name="source">The original sequence</param>
+            <param name="formatter">A projection method used to convert elements to strings</param>
+            <exception cref="T:System.ArgumentNullException">Throw if <paramref name="source"/> or 
+            <paramref name="formatter"/> are <c>null</c></exception>
+            <returns>A sequence of elements equivalent to <paramref name="source"/></returns>
+            <remarks>
+            This method uses deferred execution and streams its elements from
+            the source sequence. Elements are only written to <see cref="T:System.Diagnostics.Trace"/>
+            if they are yielded.
+            </remarks>
+        </member>
+        <member name="M:System.Linq.EnumerableEx.ToSet``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Creates a <see cref="T:System.Collections.Generic.ISet`1"/> from an 
+            <see cref="T:System.Collections.Generic.IEnumerable`1"/>.
+            </summary>
+            <typeparam name="T">The type of the elements in <paramref name="source"/></typeparam>
+            <param name="source">The original sequence</param>
+            <exception cref="T:System.ArgumentNullException">Throw if <paramref name="source"/> is
+            <c>null</c></exception>
+            <returns>A set of unique elements from <paramref name="source"/></returns>
+        </member>
+        <member name="M:System.Linq.EnumerableEx.ToSet``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEqualityComparer{``0})">
+            <summary>
+            Creates a <see cref="T:System.Collections.Generic.ISet`1"/> from an 
+            <see cref="T:System.Collections.Generic.IEnumerable`1"/> using a 
+            specified <see cref="T:System.Collections.Generic.IEqualityComparer`1"/>.
+            </summary>
+            <typeparam name="T">The type of the elements in <paramref name="source"/></typeparam>
+            <param name="source">The original sequence</param>
+            <param name="comparer">The comparer to use to determine equality of elements</param>
+            <exception cref="T:System.ArgumentNullException">Throw if <paramref name="source"/> is
+            <c>null</c></exception>
+            <returns>A set of unique elements from <paramref name="source"/></returns>
+            <remarks>Uses the default equality comparer for <typeparamref name="T"/> if one is
+            not specified.</remarks>
+        </member>
+        <member name="M:System.Linq.EnumerableEx.Alternate``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Generates a sequence of elements by alternating elements from two sequences.
+            </summary>
+            <typeparam name="T">The type of the elements in <paramref name="first"/> and <paramref name="second"/></typeparam>
+            <param name="first">The first sequence of elements</param>
+            <param name="second">The second sequence of elements</param>
+            <exception cref="T:System.ArgumentNullException">Thrown if <paramref name="first"/> or
+            <paramref name="second"/> are <c>null</c></exception>
+            <returns>An <see cref="T:System.Collections.Generic.IEnumerable`1"/> containing elements alternating from
+            <paramref name="first"/> and <paramref name="second"/> starting with <paramref name="first"/></returns>
+            <remarks><para>If one of the sequences is shorter than the other, then Alternate will continue
+            to yield elements from the other sequence until all elements have been exhausted.</para>
+            <para>If <paramref name="first"/> is an empty sequence, then the resulting sequence will
+            begin with an element from <paramref name="second"/>.</para>
+            <para>This method uses deferred execution and streams the elements from both of the source
+            sequences.</para></remarks>
+        </member>
+        <member name="T:System.DateExtensions">
+            <summary>
+            Extension methods for simplifying building date/time objects.
+            </summary>
+        </member>
+        <member name="M:System.DateExtensions.Ticks(System.Int32)">
+            <summary>
+            Creates a new <see cref="T:System.TimeSpan"/> from the specified number of ticks.
+            </summary>
+            <param name="value">The number of ticks the <see cref="T:System.TimeSpan"/> should represent.</param>
+            <returns>A new <see cref="T:System.TimeSpan"/> object whose <see cref="P:System.TimeSpan.Ticks"/> is equal
+            to <paramref name="value"/></returns>
+            <example><c>var ts = 1000.Ticks();</c></example>
+        </member>
+        <member name="M:System.DateExtensions.Milliseconds(System.Int32)">
+            <summary>
+            Creates a new <see cref="T:System.TimeSpan"/> from the specified number of milliseconds.
+            </summary>
+            <param name="value">The number of milliseconds the <see cref="T:System.TimeSpan"/> should represent.</param>
+            <returns>A new <see cref="T:System.TimeSpan"/> object whose <see cref="P:System.TimeSpan.TotalMilliseconds"/> is equal
+            to <paramref name="value"/></returns>
+            <example><c>var ts = 5000.Milliseconds();</c></example>
+        </member>
+        <member name="M:System.DateExtensions.Seconds(System.Int32)">
+            <summary>
+            Creates a new <see cref="T:System.TimeSpan"/> from the specified number of seconds.
+            </summary>
+            <param name="value">The number of seconds the <see cref="T:System.TimeSpan"/> should represent.</param>
+            <returns>A new <see cref="T:System.TimeSpan"/> object whose <see cref="P:System.TimeSpan.TotalSeconds"/> is equal
+            to <paramref name="value"/></returns>
+            <example><c>var ts = 15.Seconds();</c></example>
+        </member>
+        <member name="M:System.DateExtensions.Minutes(System.Int32)">
+            <summary>
+            Creates a new <see cref="T:System.TimeSpan"/> from the specified number of minutes.
+            </summary>
+            <param name="value">The number of minutes the <see cref="T:System.TimeSpan"/> should represent.</param>
+            <returns>A new <see cref="T:System.TimeSpan"/> object whose <see cref="P:System.TimeSpan.TotalMinutes"/> is equal
+            to <paramref name="value"/></returns>
+            <example><c>var ts = 20.Minutes();</c></example>
+        </member>
+        <member name="M:System.DateExtensions.Hours(System.Int32)">
+            <summary>
+            Creates a new <see cref="T:System.TimeSpan"/> from the specified number of hours.
+            </summary>
+            <param name="value">The number of hours the <see cref="T:System.TimeSpan"/> should represent.</param>
+            <returns>A new <see cref="T:System.TimeSpan"/> object whose <see cref="P:System.TimeSpan.TotalHours"/> is equal
+            to <paramref name="value"/></returns>
+            <example><c>var ts = 3.Hours();</c></example>
+        </member>
+        <member name="M:System.DateExtensions.Days(System.Int32)">
+            <summary>
+            Creates a new <see cref="T:System.TimeSpan"/> from the specified number of days.
+            </summary>
+            <param name="value">The number of days the <see cref="T:System.TimeSpan"/> should represent.</param>
+            <returns>A new <see cref="T:System.TimeSpan"/> object whose <see cref="P:System.TimeSpan.TotalDays"/> is equal
+            to <paramref name="value"/></returns>
+            <example><c>var ts = 2.Days();</c></example>
+        </member>
+        <member name="M:System.DateExtensions.FromNow(System.TimeSpan)">
+            <summary>
+            Creates a new <see cref="T:System.DateTime"/> that is a specified interval in the future.
+            </summary>
+            <param name="value">The amount of time to add to the current date and time</param>
+            <returns>A new <see cref="T:System.DateTime"/> object that is a specified interval in the future</returns>
+            <remarks>
+            This method does not verify that the <see cref="T:System.TimeSpan"/> is actual
+            a positive value. If a negative <see cref="T:System.TimeSpan"/> is used, the resulting 
+            <see cref="T:System.DateTime"/> will actually be in the past, not the future.
+            </remarks>
+        </member>
+        <member name="M:System.DateExtensions.Ago(System.TimeSpan)">
+            <summary>
+            Creates a new <see cref="T:System.DateTime"/> that is a specified interval in the past.
+            </summary>
+            <param name="value">The amount of time to subtract from the current date and time</param>
+            <returns>A new <see cref="T:System.DateTime"/> object that is a specified interval in the past</returns>
+            <remarks>
+            This method does not verify that the <see cref="T:System.TimeSpan"/> is actual
+            a positive value. If a negative <see cref="T:System.TimeSpan"/> is used, the resulting 
+            <see cref="T:System.DateTime"/> will actually be in the future, not the past.
+            </remarks>
+        </member>
+        <member name="T:System.ThrowHelpers">
+            <summary>
+            Extension methods to simplify basic test/throw patterns.
+            </summary>
+        </member>
+        <member name="M:System.ThrowHelpers.ThrowIfNull``1(``0,System.String)">
+            <summary>
+            Throws an <see cref="T:System.ArgumentNullException"/> if <paramref name="value"/> 
+            is <c>null</c>.
+            </summary>
+            <typeparam name="T">The type of the object to check for <c>null</c></typeparam>
+            <param name="value">The object to test for <c>null</c></param>
+            <param name="name">The name to pass as paramName for the exception</param>
+            <exception cref="T:System.ArgumentNullException">Thrown if <paramref name="value"/> is <c>null</c></exception>
+            <example>
+            <code>
+            public void Foo(Bar bar) 
+            {
+            	bar.ThrowIfNull("bar");
+            	// Do something with bar
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:System.ThrowHelpers.ThrowIfBlank(System.String,System.String)">
+            <summary>
+            Throws an <see cref="T:System.ArgumentException"/> if <paramref name="value"/>
+            is <c>null</c>, an empty string, 
+            or a string containing only white space.
+            </summary>
+            <param name="value">The <see cref="T:System.String"/> to check if it is blank</param>
+            <param name="name">The name to pass as paramName for the exception</param>
+            <exception cref="T:System.ArgumentException">Thrown if <paramref name="value"/> is blank</exception>
+            <example>
+            <code>
+            public void Foo(string bar) 
+            {
+            	bar.ThrowIfBlank("bar");
+            	// Do something with bar
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:System.ThrowHelpers.ThrowIfNegative``1(``0,System.String)">
+            <summary>
+            Throws an <see cref="T:System.ArgumentOutOfRangeException"/> if <paramref name="value"/>
+            is less than the default value for its type (<c>null</c>, <c>0</c>, or <c>false</c>).
+            </summary>
+            <typeparam name="T">The type of the object to check, must implement 
+            <see cref="T:System.IComparable`1"/></typeparam>
+            <param name="value">The object to check to see if it is negative</param>
+            <param name="name">The name to pass as paramName for the exception</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Thrown if <paramref name="value"/> is less than <c>default(<typeparamref name="T"/>)</c>
+            </exception>
+            <example>
+            <code>
+            public void Foo(int bar) 
+            {
+            	bar.ThrowIfNegative("bar");
+            	// Do something with bar
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:System.ThrowHelpers.ThrowIfNonPositive``1(``0,System.String)">
+            <summary>
+            Throws an <see cref="T:System.ArgumentOutOfRangeException"/> if <paramref name="value"/>
+            is less than or equal to the default value for its type
+            (<c>null</c>, <c>0</c>, or <c>false</c>).
+            </summary>
+            <typeparam name="T">The type of the object to check, must implement 
+            <see cref="T:System.IComparable`1"/></typeparam>
+            <param name="value">The object to check to see if it is negative or zero</param>
+            <param name="name">The name to pass as paramName for the exception</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Thrown if <paramref name="value"/> is less than or equal to <c>default(<typeparamref name="T"/>)</c>
+            </exception>
+            <example>
+            <code>
+            public void Foo(decimal bar) 
+            {
+            	bar.ThrowIfNonPositive("bar");
+            	// Do something with bar
+            }
+            </code>
+            </example>
+        </member>
+        <member name="T:System.NumericExtensions">
+            <summary>
+            Extension methods for numeric types.
+            </summary>
+        </member>
+        <member name="M:System.NumericExtensions.Times(System.Int32,System.Action)">
+            <summary>
+            Executes the specified action a given number of times.
+            </summary>
+            <param name="count">The number of times to perform the action</param>
+            <param name="action">The action to be performed</param>
+            <returns>The number of times the action was performed.</returns>
+            <remarks>
+            This method will always either perform the action the specified
+            number of times or else propogate an exception thrown by <paramref name="action"/>.
+            As such, it can be assumed that the method will always return <paramref name="count"/>.
+            </remarks>
+            <example>
+            <code>
+            3.Times(() => {
+            	Console.WriteLine("Hello World!");
+            });
+            </code>
+            <em>Output:</em>
+            Hello World!
+            Hello World!
+            Hello World!
+            </example>
+        </member>
+        <member name="M:System.NumericExtensions.Times(System.Int32,System.Action{System.Int32})">
+            <summary>
+            Executes the specified action a given number of times, passing the action the current iteration.
+            </summary>
+            <param name="count">The number of times to perform the action</param>
+            <param name="action">The action to be performed</param>
+            <returns>The number of times the action was performed.</returns>
+            <remarks>
+            This method will always either perform the action the specified
+            number of times or else propogate an exception thrown by <paramref name="action"/>.
+            As such, it can be assumed that the method will always return <paramref name="count"/>.
+            </remarks>
+            <example>
+            <code>
+            3.Times(i => {
+            	Console.WriteLine("{0}: Hello World!", i);
+            });
+            </code>
+            <em>Output:</em>
+            0: Hello World!
+            1: Hello World!
+            2: Hello World!
+            </example>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Patterns">
+            <summary>
+            Common regular expression patterns.
+            </summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Patterns.IPAddress">
+            <summary>
+            Matches a standard IPv4 network address. 
+            </summary>
+            <remarks>
+            This pattern will capture each byte in its own capture group.
+            </remarks>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Patterns.USZipCode">
+            <summary>
+            Matches a U.S. Zip or Zip+4 postal code.
+            </summary>
+            <remarks>
+            This pattern will capture the zip code in one capture group, and
+            the +4 in a second capture group.
+            </remarks>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Patterns.USPhone">
+            <summary>
+            Matches a US telephone number with optional area code.
+            </summary>
+            <remarks>
+            This pattern will store the parts of the phone number in capture groups.
+            <list type="bullet">
+            <item>1 - area code (empty if area code is not specified)</item>
+            <item>2 - prefix</item>
+            <item>3 - line number</item>
+            </list>
+            </remarks>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Patterns.MACAddress">
+            <summary>
+            Matches six byte physical addresses commonly used for network device MACs.
+            </summary>
+            <remarks>
+            <para>
+            This pattern is case sensitive by default. It will match addresses such as
+            "FF-FF-FF-FF-FF-FF", but not "ff-ff-ff-ff-ff-ff" or "FF-FF-FF-ff-ff-ff". 
+            To make the pattern case insenstive, use the <see cref="F:System.Text.RegularExpressions.RegexOptions.IgnoreCase"/>
+            option when creating a <see cref="T:System.Text.RegularExpressions.Regex"/> object.
+            </para>
+            <para>
+            MACAddress will capture each byte in its own capture group.
+            </para>
+            </remarks>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Patterns.SimpleEmail">
+            <summary>
+            Matches most valid email addresses.
+            </summary>
+            <remarks>
+            <para>
+            This pattern does not attempt to capture all possible valid email addresses. Nor does
+            it attempt to validate any email address. Strings that this pattern matches are guaranteed
+            only to match the RFC 2282 spec for email guidelines. Not all RFC 2282 valid email address
+            will be matched, however, and a match does not guarantee that an address is valid.
+            </para>
+            <para>
+            SimpleEmail will capture the local part (username) and domain into capture groups.
+            </para>
+            </remarks>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Patterns.Compiled">
+            <summary>
+            Precompiled <see cref="T:System.Text.RegularExpressions.Regex"/> objects for the patterns in <see cref="T:System.Text.RegularExpressions.Patterns"/>.
+            </summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Patterns.Compiled.IPAddress">
+            <summary>
+            Precompiled <see cref="T:System.Text.RegularExpressions.Regex"/> for <see cref="F:System.Text.RegularExpressions.Patterns.IPAddress"/>
+            </summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Patterns.Compiled.USZipCode">
+            <summary>
+            Precompiled <see cref="T:System.Text.RegularExpressions.Regex"/> for <see cref="F:System.Text.RegularExpressions.Patterns.USZipCode"/>
+            </summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Patterns.Compiled.USPhone">
+            <summary>
+            Precompiled <see cref="T:System.Text.RegularExpressions.Regex"/> for <see cref="F:System.Text.RegularExpressions.Patterns.USPhone"/>
+            </summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Patterns.Compiled.MACAddress">
+            <summary>
+            Precompiled <see cref="T:System.Text.RegularExpressions.Regex"/> for <see cref="F:System.Text.RegularExpressions.Patterns.MACAddress"/>
+            </summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Patterns.Compiled.SimpleEmail">
+            <summary>
+            Precompiled <see cref="T:System.Text.RegularExpressions.Regex"/> for <see cref="F:System.Text.RegularExpressions.Patterns.SimpleEmail"/>
+            </summary>
+        </member>
+        <member name="T:System.StringExtensions">
+            <summary>
+            Extension methods for strings.
+            </summary>
+        </member>
+        <member name="M:System.StringExtensions.IsBlank(System.String)">
+            <summary>
+            Returns true if the given <see cref="T:System.String"/> is blank.
+            </summary>
+            <param name="value">The string to test</param>
+            <returns>true if <paramref name="value"/> is blank, false otherwise</returns>
+            <remarks>
+            This method defines a blank string as one that is <c>null</c>, empty, 
+            or contains only white space.
+            <para>
+            <em>.Net Framework v3.5</em>
+            This method will use a custom <see cref="!:Regex"/> to determine if the string consists
+            of only whitespace.
+            <em>.Net Framework v4.0</em>
+            This method uses the <c>String.IsNullOrWhiteSpace</c> static method.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:System.StringExtensions.IsNullOrEmpty(System.String)">
+            <summary>
+            Returns true if the specified <see cref="T:System.String"/> is <c>null</c> or empty.
+            </summary>
+            <param name="value">The string to test</param>
+            <returns>true if <paramref name="value"/> is <c>null</c> (<c>Nothing</c> in Visual Basic)
+            or an empty string, false otherwise</returns>
+        </member>
+        <member name="T:System.Disposable">
+            <summary>
+            Base class for implementing the IDisposable pattern correctly.
+            </summary>
+        </member>
+        <member name="M:System.Disposable.Dispose">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            </summary>
+            <remarks>
+            This method handles all of the plumbing of the IDisposable pattern. Subclasses should
+            override the <see cref="M:System.Disposable.DisposeManaged"/> or 
+            <see cref="M:System.Disposable.DisposeUnmanaged"/> methods.
+            </remarks>
+        </member>
+        <member name="M:System.Disposable.CheckIfDisposed">
+            <summary>
+            Checks if object is disposed, and if so, throws an exception.		
+            </summary>
+            <exception cref="T:System.ObjectDisposedException">Thrown if <see cref="P:System.Disposable.IsDisposed"/>
+            is true</exception>
+        </member>
+        <member name="M:System.Disposable.DisposeManaged">
+            <summary>
+            Called when the derived class should dispose of its managed resources.
+            </summary>
+        </member>
+        <member name="M:System.Disposable.DisposeUnmanaged">
+            <summary>
+            Called when the derived class should dispose of its unmanged resources.
+            </summary>
+            <remarks>
+            If a class needs to override this method, think about also implementing
+            a finalizer method (~ClassName) as well.
+            </remarks>
+        </member>
+        <member name="M:System.Disposable.Action(System.Action)">
+            <summary>
+            Creates a new disposable object that will call the supplied action when
+            <see cref="M:System.IDisposable.Dispose"/> is called.
+            </summary>
+            <param name="action">The action to perform when the returned object is disposed</param>
+            <returns>An <see cref="T:System.IDisposable"/> object</returns>
+        </member>
+        <member name="P:System.Disposable.IsDisposed">
+            <summary>
+            Gets whether the current object has already been disposed.
+            </summary>
+        </member>
+    </members>
+</doc>
