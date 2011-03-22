@@ -26,3 +26,9 @@ the online help for information on how to use it.
 ## Licence
 
 Please see the LICENSE file for licensing information.
+
+----------------------------------------
+
+## Attribution
+
+Icons - [Everaldo: Crystal Project](http://everaldo.com/crystal/) (License: LGPL)
