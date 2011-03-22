@@ -119,6 +119,8 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <None Include="Resources\Images\LICENSE" />
+    <None Include="Resources\Images\README.md" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Employees\" />
@@ -132,10 +134,10 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\appointment.png" />
-    <Resource Include="Resources\identity.png" />
-    <Resource Include="Resources\LICENSE.txt" />
-    <Resource Include="Resources\software-development.png" />
+    <Resource Include="Resources\Images\Background.png" />
+    <Resource Include="Resources\Images\employees.png" />
+    <Resource Include="Resources\Images\schedules.png" />
+    <Resource Include="Resources\Images\settings.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,10 +1,8 @@
-﻿using System;
-using System.Windows;
-using Caliburn.Micro;
+﻿using Caliburn.Micro;
 
 namespace ShopSchedule.Shell {
     
-    public class ShellViewModel : Conductor<object> {
+    public class ShellViewModel : Conductor<object>.Collection.OneActive {
 
         public ShellViewModel() {
             DisplayName = "Shop Scheduler";
