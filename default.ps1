@@ -8,7 +8,7 @@ Properties {
     $sln_file = "$base_dir\ShopSchedule.sln"
     $msbuild = (Get-ChildItem "$env:windir\Microsoft.NET\Framework\v4.0*\msbuild.exe").FullName
     $nunit = (Get-ChildItem "$tools_dir\nunit\nunit-console.exe").FullName
-    $nunit_tests = { "ShopSchedule.Tests.dll" }
+    $nunit_tests = @( "ShopSchedule.Tests.dll" );
 }
 
 Include .\psake_ext.ps1
@@ -52,15 +52,20 @@ Task Compile -Depends Init {
 Task RunTests -Depends Compile {
   pushd
   cd $output_dir
-  foreach($testDLL in $nunit_tests) 
+  foreach($test_dll in $nunit_tests) 
   {
-    Write-Host "Testing $testDLL"
-    Exec { & "$nunit" /labels /framework=net-40 /xml="$testDLL.Results.xml" }
+    Write-Host "$nunit $test_dll /labels /framework=net-4.0 " -ForegroundColor Green 
+    Exec { & "$nunit" "$test_dll" /labels /framework=net-4.0  }
   }
   popd
 }
 
-Task Deploy -Depends RunTests { 
+Task Package -Depends RunTests { 
+    Write-Host "Building a deployment package is not currently configured." -ForegroundColor Red
+}
+
+Task Install -Depends BuildDeploy, RunTests {
+    Write-Host "Directly installing is not currently configured." -ForegroundColor Red
 }
 
 Task CreateDocs {
