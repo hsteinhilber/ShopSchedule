@@ -47,9 +47,18 @@
     <Reference Include="TechTalk.SpecFlow">
       <HintPath>..\libs\specflow\TechTalk.SpecFlow.dll</HintPath>
     </Reference>
+    <Reference Include="UIAutomationClient" />
+    <Reference Include="UIAutomationClientsideProviders" />
+    <Reference Include="UIAutomationTypes" />
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EmployeeDetails.feature.cs">
+      <DependentUpon>EmployeeDetails.feature</DependentUpon>
+    </Compile>
+    <Compile Include="EmployeeMaster.feature.cs">
+      <DependentUpon>EmployeeMaster.feature</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -57,6 +66,10 @@
       <Project>{B3A44CD5-E794-4921-9788-DC04ECE668E1}</Project>
       <Name>ShopSchedule</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="EmployeeDetails.feature" />
+    <None Include="EmployeeMaster.feature" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
