@@ -8,7 +8,7 @@ Properties {
     $sln_file = "$base_dir\ShopSchedule.sln"
     $msbuild = (Get-ChildItem "$env:windir\Microsoft.NET\Framework\v4.0*\msbuild.exe").FullName
     $nunit = (Get-ChildItem "$tools_dir\nunit\nunit-console.exe").FullName
-    $nunit_tests = @( "ShopSchedule.Tests.dll" );
+    $specflow = (Get-ChildItem "$tools_dir\specflow\specflow.exe").FullName
 }
 
 Include .\psake_ext.ps1
@@ -31,9 +31,10 @@ Task Init -Depends Clean {
 		$projectDir = [System.IO.Path]::GetDirectoryName($projectFile)
 		$projectName = [System.IO.Path]::GetFileName($projectDir)
 		$asmInfoFile = [System.IO.Path]::Combine($projectDir, [System.IO.Path]::Combine("Properties", "AssemblyInfo.cs"))
-		
+		$clsCompliant = (-not $projectName.Contains(".Specs")).ToString().ToLower()
+        
 		Generate-Assembly-Info `
-			-ClsCompliant "true" `
+			-ClsCompliant "$clsCompliant" `
 			-Title "$projectName" `
 			-Description "A schedule writing application for shop based environments." `
 			-Company "Harry Steinhilber, Jr." `
@@ -52,12 +53,37 @@ Task Compile -Depends Init {
 Task RunTests -Depends Compile {
   pushd
   cd $output_dir
-  foreach($test_dll in $nunit_tests) 
+
+  foreach($fileInfo in (ls '*.Tests.dll')) 
   {
-    Write-Host "$nunit $test_dll /labels /framework=net-4.0 " -ForegroundColor Green 
-    Exec { & "$nunit" "$test_dll" /labels /framework=net-4.0  }
+    $assembly = $fileInfo.Name
+    $xmlFile = $assembly.Substring(0, $assembly.Length - 10) + '.TestResults.xml'
+    Exec { & "$nunit" "$assembly" /labels /framework=net-4.0 /xml=$xmlFile  }
   }
+  
   popd
+}
+
+Task RunSpecs -Depends RunTests {
+    pushd
+    cd $output_dir
+    
+    foreach($fileInfo in (ls '*.Specs.dll'))
+    {
+        $assembly = $fileInfo.Name
+        $baseName = $assembly.Substring(0, $assembly.Length - 4)
+        $project = "$base_dir\$baseName\$baseName.csproj"
+        $xmlFile = $baseName.Substring(0, $baseName.Length - 6) + '.SpecResults.xml'
+        $htmlFile = $xmlFile.Substring(0, $xmlFile.Length - 4) + '.html'
+        
+        Exec { 
+            & "$nunit" "$assembly" /labels /framework=net-4.0 /xml=$xmlFile
+            & "$specflow" nunitexecutionreport "$project" /xmlTestResult:$xmlFile /out:$htmlFile
+            & "$output_dir\$htmlFile"
+        }
+
+    }
+    popd
 }
 
 Task Package -Depends RunTests { 

@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShopSchedule", "ShopSchedul
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShopSchedule.Tests", "ShopSchedule.Tests\ShopSchedule.Tests.csproj", "{3E5AD10A-2F76-4722-A64D-4CA3FFD47F3C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShopSchedule.Specs", "ShopSchedule.Specs\ShopSchedule.Specs.csproj", "{3B99849C-6CC9-48FA-B951-23968F17DDFD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,16 @@ Global
 		{3E5AD10A-2F76-4722-A64D-4CA3FFD47F3C}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{3E5AD10A-2F76-4722-A64D-4CA3FFD47F3C}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{3E5AD10A-2F76-4722-A64D-4CA3FFD47F3C}.Release|x86.ActiveCfg = Release|Any CPU
+		{3B99849C-6CC9-48FA-B951-23968F17DDFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B99849C-6CC9-48FA-B951-23968F17DDFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B99849C-6CC9-48FA-B951-23968F17DDFD}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{3B99849C-6CC9-48FA-B951-23968F17DDFD}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{3B99849C-6CC9-48FA-B951-23968F17DDFD}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{3B99849C-6CC9-48FA-B951-23968F17DDFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B99849C-6CC9-48FA-B951-23968F17DDFD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B99849C-6CC9-48FA-B951-23968F17DDFD}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{3B99849C-6CC9-48FA-B951-23968F17DDFD}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{3B99849C-6CC9-48FA-B951-23968F17DDFD}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
