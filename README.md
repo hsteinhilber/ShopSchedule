@@ -9,8 +9,8 @@ gas station and convenience store level scheduling.
 ## Installation
 
 Shop schedule is easily installed through the PowerShell build script.
-    git clone git://github.com/hsteinhilber/ShopScheduler.git
-    cd ShopScheduler
+    git clone git://github.com/hsteinhilber/ShopSchedule.git
+    cd ShopSchedule
     build Install
 
 ----------------------------------------
