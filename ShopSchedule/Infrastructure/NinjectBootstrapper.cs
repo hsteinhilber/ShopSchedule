@@ -14,6 +14,7 @@ namespace ShopSchedule.Infrastructure {
             kernel = new StandardKernel();
             kernel.Scan(scanner => {
                 scanner.From(AssemblySource.Instance);
+                scanner.WhereTypeInheritsFrom<IScreen>();
                 scanner.BindWithDefaultConventions();
                 scanner.InTransientScope();
             });
