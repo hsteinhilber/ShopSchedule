@@ -1,7 +1,7 @@
-﻿Feature: Application shell
+﻿Feature: Application Shell
 	In order to organize workspaces
 	As an application user
-	I want to have a central location to select which workflow I am currently working on
+	I want to have a central location to select which workspace I am currently working on
 
 Scenario: Starting the application
 	Given I have not run the application
