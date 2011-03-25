@@ -47,9 +47,12 @@
     <Reference Include="TechTalk.SpecFlow">
       <HintPath>..\libs\specflow\TechTalk.SpecFlow.dll</HintPath>
     </Reference>
-    <Reference Include="UIAutomationClient" />
-    <Reference Include="UIAutomationClientsideProviders" />
-    <Reference Include="UIAutomationTypes" />
+    <Reference Include="White.Core">
+      <HintPath>..\libs\white\White.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="White.NUnit">
+      <HintPath>..\libs\white\White.NUnit.dll</HintPath>
+    </Reference>
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
