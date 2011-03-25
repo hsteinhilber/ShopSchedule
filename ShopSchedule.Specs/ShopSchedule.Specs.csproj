@@ -63,6 +63,9 @@
       <DependentUpon>EmployeeMaster.feature</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Shell.feature.cs">
+      <DependentUpon>Shell.feature</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ShopSchedule\ShopSchedule.csproj">
@@ -73,6 +76,7 @@
   <ItemGroup>
     <None Include="EmployeeDetails.feature" />
     <None Include="EmployeeMaster.feature" />
+    <None Include="Shell.feature" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
