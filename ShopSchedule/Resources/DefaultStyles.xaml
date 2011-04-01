@@ -5,8 +5,13 @@
         <GradientStop Color="#9391BF" Offset="1.0"/>
     </LinearGradientBrush>
 
+    <Style TargetType="{x:Type TextBlock}">
+        <Setter Property="FontFamily" Value="Georgia" />
+    </Style>
+    
     <Style TargetType="{x:Type Button}">
         <Setter Property="Background" Value="{StaticResource LightPurpleGradientBrush}" />
+        <Setter Property="FontFamily" Value="Georgia" />
         <Setter Property="BorderBrush" Value="#C2DDFF" />
         <Setter Property="Width" Value="80" />
         <Setter Property="Height" Value="80" />
