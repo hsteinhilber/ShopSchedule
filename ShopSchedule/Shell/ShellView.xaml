@@ -7,38 +7,31 @@
 		       Stretch="Fill" />
 
         <DockPanel>
-            <TextBlock DockPanel.Dock="Top"
-			           Foreground="White"
-                       x:Name="DisplayName"
-                       Margin="5 5 0 0"
-			           FontSize="24"
-			           FontWeight="Bold" />
+            <DockPanel DockPanel.Dock="Top">
+                <TextBlock DockPanel.Dock="Left" Foreground="#FFAC47"
+                           x:Name="DisplayName" Text="**Shop Schedule Maker 2011**"
+                           Margin="25 5 0 0" FontSize="40" FontWeight="Bold">
+                    <TextBlock.Effect>
+                        <DropShadowEffect Direction="330" ShadowDepth="4" Color="Black" Opacity="0.75"/>
+                    </TextBlock.Effect>
+                </TextBlock>
+                <ItemsControl x:Name="Items" DockPanel.Dock="Right">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Button x:Name="Show">
+                                <Image x:Name="Icon" Width="64" Height="64" />
+                            </Button>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </DockPanel>
 
-            <ItemsControl x:Name="Items" DockPanel.Dock="Bottom" HorizontalAlignment="Center">
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <StackPanel Orientation="Horizontal" />
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <!--<Button x:Name="Show">
-                            <Grid Width="100">
-                                <StackPanel>
-                                    <Image x:Name="Icon" Width="48" Height="48" />
-                                    <TextBlock x:Name="IconName" HorizontalAlignment="Center" />
-                                </StackPanel>
-                                <TextBlock x:Name="Status"
-                                           VerticalAlignment="Top"
-								           HorizontalAlignment="Right"
-								           Margin="2" />
-                            </Grid>
-                        </Button>-->
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-
-            <ContentControl x:Name="ActiveItem" Margin="20" />
+            <ContentControl x:Name="ActiveItem" Margin="25" />
         </DockPanel>
     </Grid>
 </Window>

@@ -7,8 +7,9 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary>
-                    <infrastructure:NinjectBootstrapper x:Key="bootstrapper" />
+                    <infrastructure:NinjectBootstrapper x:Key="bootstrapper" />                    
                 </ResourceDictionary>
+                <ResourceDictionary Source="Resources/DefaultStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
