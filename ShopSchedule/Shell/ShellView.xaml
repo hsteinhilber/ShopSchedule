@@ -18,7 +18,7 @@
                 <ItemsControl x:Name="Items" DockPanel.Dock="Right">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
-                            <StackPanel Orientation="Horizontal" />
+                            <StackPanel Orientation="Horizontal" FlowDirection="RightToLeft" />
                         </ItemsPanelTemplate>
                     </ItemsControl.ItemsPanel>
                     <ItemsControl.ItemTemplate>
