@@ -39,14 +39,11 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xaml" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
     <Reference Include="TechTalk.SpecFlow">
       <HintPath>..\libs\specflow\TechTalk.SpecFlow.dll</HintPath>
     </Reference>
+    <Reference Include="UIAutomationClient" />
     <Reference Include="White.Core">
       <HintPath>..\libs\white\White.Core.dll</HintPath>
     </Reference>
@@ -66,6 +63,7 @@
     <Compile Include="Shell.feature.cs">
       <DependentUpon>Shell.feature</DependentUpon>
     </Compile>
+    <Compile Include="ShellActions.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ShopSchedule\ShopSchedule.csproj">

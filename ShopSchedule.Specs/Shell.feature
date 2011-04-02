@@ -6,7 +6,7 @@
 Scenario: Starting the application
 	Given I have not run the application
 	When I open the application
-	Then I should default to the statistics screen
+	Then I should see the home screen
 
 Scenario: Employees workspace
 	Given I have already opened the application
@@ -18,8 +18,8 @@ Scenario: Schedules workspace
 	When I click on the Schedules button
 	Then I should see the schedule master screen
 
-Scenario: Statistics workspace
+Scenario: Home workspace
 	Given I visit the employee master screen
-	When I click on the Statistics button
-	Then I should see the statistics screen
+	When I click on the Home button
+	Then I should see the home screen
 	

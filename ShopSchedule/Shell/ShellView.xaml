@@ -23,8 +23,9 @@
                     </ItemsControl.ItemsPanel>
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <Button x:Name="Show">
-                                <Image x:Name="Icon" Width="64" Height="64" />
+                            <Button x:Name="Show" ToolTip="{Binding DisplayName}">
+                                <Image x:Name="Icon" Source="{Binding Icon}" 
+                                       Width="64" Height="64" />
                             </Button>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>

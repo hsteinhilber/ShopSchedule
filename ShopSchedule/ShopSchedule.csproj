@@ -85,8 +85,13 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Infrastructure\IWorkspace.cs" />
     <Compile Include="Infrastructure\NinjectBootstrapper.cs" />
     <Compile Include="Shell\ShellViewModel.cs" />
+    <Compile Include="Statistics\HomeView.xaml.cs">
+      <DependentUpon>HomeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Statistics\HomeViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -128,12 +133,16 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Statistics\HomeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Images\Background.png" />
-    <Resource Include="Resources\Images\employees.png" />
-    <Resource Include="Resources\Images\schedules.png" />
-    <Resource Include="Resources\Images\settings.png" />
+    <EmbeddedResource Include="Resources\Images\Background.png" />
+    <EmbeddedResource Include="Resources\Images\employees.png" />
+    <EmbeddedResource Include="Resources\Images\schedules.png" />
+    <EmbeddedResource Include="Resources\Images\settings.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">
@@ -156,6 +165,9 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Images\home.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

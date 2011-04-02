@@ -13,3 +13,4 @@ The following is a complete list of the icons used within this application:
 * schedules.png =&gt; actions/appointment.png
 * employees.png =&gt; actions/identity.png
 * settings.png  =&gt; apps/software-development.png
+* home.png      =&gt; apps/kwallet.png
