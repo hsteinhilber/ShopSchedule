@@ -5,3 +5,4 @@
 build/
 **/Properties/AssemblyInfo.cs
 *.feature.cs
+/TestResult.xml
