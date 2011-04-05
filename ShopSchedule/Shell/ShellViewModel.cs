@@ -8,7 +8,8 @@ namespace ShopSchedule.Shell {
 
         public ShellViewModel() {
             DisplayName = String.Format("Shop Schedule Maker {0}", DateTime.Today.Year);
-            Items.Add(new Home.HomeViewModel() { DisplayName = "Home Page" });
+            Items.Add(new Home.HomeViewModel());
+            Items.Add(new Employees.EmployeeViewModel());
             ActivateItem(Items[0]);
         }
     }

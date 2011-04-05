@@ -89,6 +89,12 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Employees\EmployeeView.xaml.cs">
+      <DependentUpon>EmployeeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Employees\EmployeeViewModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Infrastructure\IWorkspace.cs" />
     <Compile Include="Infrastructure\NinjectBootstrapper.cs" />
     <Compile Include="Shell\ShellViewModel.cs" />
@@ -124,11 +130,14 @@
     <None Include="Resources\Images\README.md" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Employees\" />
     <Folder Include="Schedules\" />
     <Folder Include="Settings\" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Employees\EmployeeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Resources\DefaultStyles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

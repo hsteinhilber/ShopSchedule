@@ -49,6 +49,7 @@
       <HintPath>..\libs\specflow\TechTalk.SpecFlow.dll</HintPath>
     </Reference>
     <Reference Include="UIAutomationClient" />
+    <Reference Include="UIAutomationTypes" />
     <Reference Include="White.Core">
       <HintPath>..\libs\white\White.Core.dll</HintPath>
     </Reference>
@@ -64,7 +65,19 @@
     <Compile Include="EmployeeMaster.feature.cs">
       <DependentUpon>EmployeeMaster.feature</DependentUpon>
     </Compile>
+    <Compile Include="Home.feature.cs">
+      <DependentUpon>Home.feature</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ScheduleDetail.feature.cs">
+      <DependentUpon>ScheduleDetail.feature</DependentUpon>
+    </Compile>
+    <Compile Include="ScheduleMaster.feature.cs">
+      <DependentUpon>ScheduleMaster.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Settings.feature.cs">
+      <DependentUpon>Settings.feature</DependentUpon>
+    </Compile>
     <Compile Include="Shell.feature.cs">
       <DependentUpon>Shell.feature</DependentUpon>
     </Compile>
@@ -79,6 +92,10 @@
   <ItemGroup>
     <None Include="EmployeeDetails.feature" />
     <None Include="EmployeeMaster.feature" />
+    <None Include="Home.feature" />
+    <None Include="ScheduleDetail.feature" />
+    <None Include="ScheduleMaster.feature" />
+    <None Include="Settings.feature" />
     <None Include="Shell.feature" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
