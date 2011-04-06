@@ -5,11 +5,12 @@ using Caliburn.Micro;
 using NUnit.Framework;
 using ShopSchedule.Infrastructure;
 using System.Reflection;
+using System.Windows.Controls;
 
-namespace ShopSchedule.Tests {
+namespace ShopSchedule.Conventions.Tests {
 
     [TestFixture]
-    public class ConventionTests {
+    public class ViewAndViewModels {
 
         public IEnumerable<Type> GetViewModelTypes() {
             return from type in typeof(NinjectBootstrapper).Assembly.GetTypes()
