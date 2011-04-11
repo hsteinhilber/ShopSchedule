@@ -38,7 +38,7 @@ namespace ShopSchedule.Specs {
 
         [Then("I should see the home workspace")]
         public void ThenIShouldDefaultToTheStatisticsScreen() {            
-            WPFLabel titleLabel = mainWindow.Get<WPFLabel>(SearchCriteria.ByAutomationId("DisplayName").AndIndex(1));
+            WPFLabel titleLabel = mainWindow.Get<WPFLabel>(SearchCriteria.ByAutomationId("WorkspaceTitle"));
             Assert.That(titleLabel, Is.Not.Null, "Could not find the title label for the active content item.");
 
             Assert.That(titleLabel.Text, Is.StringMatching("home").IgnoreCase);

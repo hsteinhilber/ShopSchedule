@@ -7,6 +7,6 @@
              d:DesignHeight="643" d:DesignWidth="974">
     <Grid Background="Bisque">
         <Rectangle Fill="#F2FFC2" RadiusX="20" RadiusY="20" Stroke="#FFAC47" StrokeThickness="2"  />
-        <TextBlock x:Name="DisplayName" FontSize="24" Margin="20 20 0 0" Text="**Employees**" />
+        <TextBlock x:Name="DisplayName" AutomationProperties.AutomationId="WorkspaceTitle" FontSize="24" Margin="20 20 0 0" Text="**Employees**" />
     </Grid>
 </UserControl>
