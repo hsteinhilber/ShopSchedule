@@ -1,6 +1,7 @@
 ﻿<Window x:Class="ShopSchedule.Shell.ShellView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:cal="clr-namespace:Caliburn.Micro;assembly=Caliburn.Micro"             
         Title="ShellView" Height="768" Width="1024">
     <Grid Background="Bisque">
         <Image Source="/Resources/Images/Background.png"
@@ -23,16 +24,16 @@
                     </ItemsControl.ItemsPanel>
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <Button x:Name="Show" ToolTip="{Binding DisplayName}">
-                                <Image x:Name="Icon" Source="{Binding Icon}" 
-                                       Width="64" Height="64" />
+                            <Button cal:Message.Attach="Show" ToolTip="{Binding DisplayName}" 
+                                    AutomationProperties.AutomationId="{Binding DisplayName}">
+                                <Image x:Name="Icon" Source="{Binding Icon}" Width="64" Height="64" />
                             </Button>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
             </DockPanel>
 
-            <ContentControl x:Name="ActiveItem" Margin="25" />
+            <ContentControl x:Name="ActiveItem" Margin="25 0 25 25" />
         </DockPanel>
     </Grid>
 </Window>

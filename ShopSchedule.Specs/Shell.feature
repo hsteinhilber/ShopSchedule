@@ -11,12 +11,12 @@ Scenario: Starting the application
 Scenario: Employees workspace
 	Given I have opened the application
 	When I click on the employees button
-	Then I should see the employee master workspace
+	Then I should see the employee workspace
 
 Scenario: Schedules workspace
 	Given I have opened the application
 	When I click on the schedules button
-	Then I should see the schedule master workspace
+	Then I should see the schedule workspace
 
 Scenario: Home workspace
 	Given I visit the employee master workspace

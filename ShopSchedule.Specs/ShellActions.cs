@@ -1,12 +1,8 @@
-﻿using System;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using TechTalk.SpecFlow;
 using White.Core;
 using White.Core.UIItems;
-using White.Core.UIItems.Finders;
 using White.Core.UIItems.WindowItems;
-using White.Core.UIItems.WPFUIItems;
-using System.Windows.Automation;
 
 namespace ShopSchedule.Specs {
 
@@ -32,16 +28,40 @@ namespace ShopSchedule.Specs {
             Assume.That(mainWindow, Is.Not.Null, "Could not find the primary window!");
         }
 
-        [Given("I click on the employees button")]
-        public void GivenIClickOnTheEmployeesButton() {
+        [When("I click on the employees button")]
+        public void ClickOnWorkspaceButton() {
+            Button button = mainWindow.Get<Button>("Employees");
+            Assume.That(button, Is.Not.Null, "Button '{0}' was expected to be clicked, but could not be found.", "Employees");
+
+            System.Console.WriteLine("Button => {0}-{1} ({2})",
+                button.Bounds.TopLeft, button.Bounds.BottomRight, button.ClickablePoint);
+            ShowMouseLocation();
+
+            White.Core.InputDevices.Mouse.Instance.Location = button.ClickablePoint;
+
+            ShowMouseLocation();
+
+            var myPoint = new System.Windows.Point(button.ClickablePoint.X, button.ClickablePoint.Y);
+            System.Console.WriteLine("Attempting to move mouse to {0}", myPoint);
+            White.Core.InputDevices.Mouse.Instance.Location = myPoint;
+
+            ShowMouseLocation();
+
+            button.Click();
+
+            ShowMouseLocation();
         }
 
-        [Then("I should see the home workspace")]
-        public void ThenIShouldDefaultToTheStatisticsScreen() {            
-            WPFLabel titleLabel = mainWindow.Get<WPFLabel>(SearchCriteria.ByAutomationId("WorkspaceTitle"));
+        private static void ShowMouseLocation() {
+            System.Console.WriteLine("Mouse Location => {0}", White.Core.InputDevices.Mouse.Instance.Location);
+        }
+
+        [Then(@"I should see the (\w+) workspace")]
+        public void ShouldDisplayWorkspace(string workspace) {
+            WPFLabel titleLabel = mainWindow.Get<WPFLabel>("WorkspaceTitle");
             Assert.That(titleLabel, Is.Not.Null, "Could not find the title label for the active content item.");
 
-            Assert.That(titleLabel.Text, Is.StringMatching("home").IgnoreCase);
+            Assert.That(titleLabel.Text, Is.StringMatching(workspace).IgnoreCase);
         }
 
         [AfterScenario]
@@ -53,7 +73,7 @@ namespace ShopSchedule.Specs {
             if (application != null && application.HasExited) {
                 application.Kill();
                 application = null;
-            }                
+            }
         }
     }
 }

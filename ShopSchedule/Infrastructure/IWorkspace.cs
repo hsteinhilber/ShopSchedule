@@ -3,5 +3,6 @@
 namespace ShopSchedule.Infrastructure {
     public interface IWorkspace : IScreen {
         string Icon { get; }
+        void Show();
     }
 }

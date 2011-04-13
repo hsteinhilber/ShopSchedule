@@ -9,5 +9,8 @@ namespace ShopSchedule.Home {
         }
 
         public string Icon { get { return @"/Resources/Images/home.png"; } }
+
+        public void Show() {
+        }
     }
 }

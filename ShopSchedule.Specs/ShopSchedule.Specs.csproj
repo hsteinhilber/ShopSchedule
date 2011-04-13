@@ -33,7 +33,6 @@
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
     <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
-    <CodeAnalysisFailOnMissingRules>false</CodeAnalysisFailOnMissingRules>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="nunit.framework, Version=2.5.9.10348, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
@@ -52,9 +51,6 @@
     <Reference Include="UIAutomationTypes" />
     <Reference Include="White.Core">
       <HintPath>..\libs\white\White.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="White.NUnit">
-      <HintPath>..\libs\white\White.NUnit.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
   </ItemGroup>
