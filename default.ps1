@@ -7,7 +7,7 @@ Properties {
     $output_dir = "$build_dir\$configuration"
     $sln_file = "$base_dir\ShopSchedule.sln"
     $msbuild = (Get-ChildItem "$env:windir\Microsoft.NET\Framework\v4.0*\msbuild.exe").FullName
-    $nunit = (Get-ChildItem "$tools_dir\nunit\nunit-console.exe").FullName
+    $nunit = (Get-ChildItem "$tools_dir\nunit\nunit-console-x86.exe").FullName
     $specflow = (Get-ChildItem "$tools_dir\specflow\specflow.exe").FullName
 }
 
