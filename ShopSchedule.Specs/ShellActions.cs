@@ -28,10 +28,11 @@ namespace ShopSchedule.Specs {
             Assume.That(mainWindow, Is.Not.Null, "Could not find the primary window!");
         }
 
-        [When("I click on the employees button")]
-        public void ClickOnWorkspaceButton() {
-            Button button = mainWindow.Get<Button>("Employees");
-            Assume.That(button, Is.Not.Null, "Button '{0}' was expected to be clicked, but could not be found.", "Employees");
+        [Given(@"I visit the (\w+) workspace")]
+        [When(@"I click on the (\w+) button")]
+        public void ClickOnWorkspaceButton(string workspace) {
+            Button button = mainWindow.Get<Button>(workspace);
+            Assume.That(button, Is.Not.Null, "Button '{0}' was expected to be clicked, but could not be found.", workspace);
 
             button.Click();
         }
