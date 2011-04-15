@@ -33,27 +33,7 @@ namespace ShopSchedule.Specs {
             Button button = mainWindow.Get<Button>("Employees");
             Assume.That(button, Is.Not.Null, "Button '{0}' was expected to be clicked, but could not be found.", "Employees");
 
-            System.Console.WriteLine("Button => {0}-{1} ({2})",
-                button.Bounds.TopLeft, button.Bounds.BottomRight, button.ClickablePoint);
-            ShowMouseLocation();
-
-            White.Core.InputDevices.Mouse.Instance.Location = button.ClickablePoint;
-
-            ShowMouseLocation();
-
-            var myPoint = new System.Windows.Point(button.ClickablePoint.X, button.ClickablePoint.Y);
-            System.Console.WriteLine("Attempting to move mouse to {0}", myPoint);
-            White.Core.InputDevices.Mouse.Instance.Location = myPoint;
-
-            ShowMouseLocation();
-
             button.Click();
-
-            ShowMouseLocation();
-        }
-
-        private static void ShowMouseLocation() {
-            System.Console.WriteLine("Mouse Location => {0}", White.Core.InputDevices.Mouse.Instance.Location);
         }
 
         [Then(@"I should see the (\w+) workspace")]
